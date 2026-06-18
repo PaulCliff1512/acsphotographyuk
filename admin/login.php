@@ -12,7 +12,7 @@ if (adminIsLoggedIn()) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
-    if (hash_equals($adminConfig['password'], $password)) {
+    if (password_verify($password, $adminConfig['password_hash'])) {
         $_SESSION['admin_logged_in'] = true;
         header('Location: index.php');
         exit;

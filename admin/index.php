@@ -85,7 +85,15 @@ if ($storagePercent >= 90) {
     }
 
     .top-links a {
-      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid var(--accent-dark);
+      border-radius: var(--radius);
+      color: #ffffff;
+      background: var(--accent-dark);
       font-weight: 700;
       text-decoration: none;
     }
@@ -93,6 +101,7 @@ if ($storagePercent >= 90) {
     .top-links a:hover,
     .top-links a:focus {
       color: var(--accent-dark);
+      background: transparent;
     }
 
     h1 {
@@ -222,7 +231,6 @@ if ($storagePercent >= 90) {
 <body>
   <main class="page">
     <div class="top-links">
-      <a href="../home.php">Back to site</a>
       <a href="logout.php">Logout</a>
     </div>
 

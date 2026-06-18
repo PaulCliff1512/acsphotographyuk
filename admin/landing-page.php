@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($landingPages[$selectedLanding])) {
         $error = 'Please choose a valid landing page.';
     } else {
-        $sourcePath = realpath(__DIR__ . '/../' . $selectedLanding);
+        $sourcePath = realpath(__DIR__ . '/landing-pages/' . $selectedLanding);
         $targetPath = __DIR__ . '/../index.html';
 
         if ($sourcePath === false || !is_file($sourcePath)) {
@@ -214,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <h1>Landing Page</h1>
-    <p class="intro">Choose one of the saved landing page designs. Applying a design copies it to index.html. The original landing files are kept unchanged.</p>
+    <p class="intro">Choose one of the saved private landing page designs. Applying a design copies it to index.html. The original private landing files are kept unchanged.</p>
 
     <?php if ($message !== ''): ?>
       <p class="notice notice--success"><?php echo htmlspecialchars($message); ?></p>
@@ -243,7 +243,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <section class="preview-panel">
           <h2>Chosen replacement</h2>
           <div class="preview" aria-label="Chosen landing page preview">
-            <iframe src="../landing1.html" title="Chosen landing page preview" data-landing-preview></iframe>
+            <iframe src="landing-preview.php?file=landing1.html" title="Chosen landing page preview" data-landing-preview></iframe>
           </div>
         </section>
       </div>
@@ -257,7 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     const preview = document.querySelector('[data-landing-preview]');
 
     select.addEventListener('change', () => {
-      preview.src = '../' + select.value;
+      preview.src = 'landing-preview.php?file=' + encodeURIComponent(select.value);
     });
   </script>
 </body>
