@@ -265,6 +265,11 @@ if ($storagePercent >= 90) {
         <p>Choose which uploaded images appear in the moving homepage panels.</p>
       </a>
 
+      <a class="action" href="landing-page.php">
+        <h2>Landing Page</h2>
+        <p>Choose which saved landing page design is active on the front page.</p>
+      </a>
+
       <a class="action" href="library-files.php">
         <h2>Image Folder Files</h2>
         <p>Review original image folder files and delete files that are no longer required.</p>
