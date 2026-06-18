@@ -1,0 +1,23 @@
+# Private/local configuration
+config/*.php
+!config/*.example.php
+
+# Large media folders: keep folder placeholders, not the image files
+images/*
+!images/.gitkeep
+uploads/*
+!uploads/.gitkeep
+!uploads/creatures/
+uploads/creatures/*
+!uploads/creatures/.gitkeep
+!uploads/landscapes/
+uploads/landscapes/*
+!uploads/landscapes/.gitkeep
+
+# Local diagnostics and system files
+gcm-diagnose.log
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+

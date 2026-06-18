@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACS Photography UK</title>
+  <script src="settings.js"></script>
+  <style>
+    :root {
+      --page-bg: #f7f4ee;
+      --text-main: #1f2528;
+      --text-soft: #5d6468;
+      --accent: #9a6a3a;
+      --accent-dark: #6f4825;
+      --panel-bg: #ffffff;
+      --shadow: 0 24px 60px rgba(31, 37, 40, 0.14);
+      --radius: 8px;
+      --content-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text-main);
+      background: var(--page-bg);
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .landing {
+      min-height: 100vh;
+      padding: 28px;
+      background: linear-gradient(135deg, #faf8f2 0%, #f1ece2 100%);
+    }
+
+    .site-header {
+      width: min(100%, var(--content-width));
+      margin: 0 auto 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--text-main);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-decoration: none;
+    }
+
+    .hero {
+      width: min(100%, var(--content-width));
+      min-height: calc(100vh - 126px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(340px, 1.05fr);
+      gap: clamp(32px, 5vw, 72px);
+      align-items: center;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+    }
+
+    .hero-copy h1 {
+      margin: 0 0 22px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.2rem, 7vw, 6.8rem);
+      line-height: 0.95;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .hero-copy p {
+      margin: 0 0 18px;
+      color: var(--text-soft);
+      font-size: clamp(1.08rem, 1.6vw, 1.35rem);
+      line-height: 1.65;
+    }
+
+    .enter-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      margin-top: 18px;
+      padding: 0 26px;
+      border: 1px solid var(--accent-dark);
+      border-radius: var(--radius);
+      color: #ffffff;
+      background: var(--accent-dark);
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .enter-button:hover,
+    .enter-button:focus {
+      color: var(--accent-dark);
+      background: transparent;
+      transform: translateY(-2px);
+    }
+
+    .photo-showcase {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(14px, 2.4vw, 24px);
+      align-items: center;
+    }
+
+    .slider {
+      position: relative;
+      overflow: hidden;
+      min-height: 460px;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius);
+      background: var(--panel-bg);
+      box-shadow: var(--shadow);
+    }
+
+    .slider:nth-child(2) {
+      margin-top: clamp(32px, 7vw, 82px);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      animation: fadeSlide 15s infinite;
+    }
+
+    .slide:nth-child(2) {
+      animation-delay: 5s;
+    }
+
+    .slide:nth-child(3) {
+      animation-delay: 10s;
+    }
+
+    .slider--second .slide {
+      animation-duration: 18s;
+    }
+
+    .slider--second .slide:nth-child(2) {
+      animation-delay: 6s;
+    }
+
+    .slider--second .slide:nth-child(3) {
+      animation-delay: 12s;
+    }
+
+    @keyframes fadeSlide {
+      0% {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+
+      8%,
+      30% {
+        opacity: 1;
+      }
+
+      38%,
+      100% {
+        opacity: 0;
+        transform: scale(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide {
+        animation: none;
+      }
+
+      .slide:first-child {
+        opacity: 1;
+      }
+
+      .enter-button {
+        transition: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .landing {
+        padding: 22px;
+      }
+
+      .site-header {
+        margin-bottom: 28px;
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .hero-copy {
+        max-width: none;
+      }
+
+      .photo-showcase {
+        max-width: 680px;
+      }
+
+      .slider {
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .landing {
+        padding: 18px;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.8rem, 16vw, 4.6rem);
+      }
+
+      .hero-copy p {
+        font-size: 1.02rem;
+      }
+
+      .photo-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .slider,
+      .slider:nth-child(2) {
+        width: 100%;
+        min-height: 280px;
+        aspect-ratio: 16 / 11;
+        margin-top: 0;
+      }
+
+      .enter-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="landing">
+    <header class="site-header" aria-label="Site header">
+      <a class="logo" href="#" data-base-url-link>acsphotographyuk.co.uk</a>
+    </header>
+
+    <section class="hero" aria-label="ACS Photography UK landing page">
+      <div class="hero-copy">
+        <h1>The Art of Capturing Moments</h1>
+        <p>Welcome to ACS Photography UK. Take your time, look around, and enjoy the moments gathered here.</p>
+        <p>Photography is more than pressing a button. It is light, patience, timing, and feeling brought together in a single frame.</p>
+        <p>From quiet landscapes to wildlife, portraits, events, and street scenes, each image is created to tell a story and reveal beauty in the world around us.</p>
+        <a class="enter-button" href="/home.php">Enter Site</a>
+      </div>
+
+      <div class="photo-showcase" aria-label="Featured photography previews">
+        <div class="slider" aria-label="First sliding photography panel">
+          <div class="slide">
+            <img src="images/The%20Forest%20Path.JPG" alt="Forest path photography">
+          </div>
+          <div class="slide">
+            <img src="images/entrance%20to%20wonderland.jpg" alt="Woodland entrance photography">
+          </div>
+          <div class="slide">
+            <img src="images/Fields%20of%20gold.jpg" alt="Golden field photography">
+          </div>
+        </div>
+
+        <div class="slider slider--second" aria-label="Second sliding photography panel">
+          <div class="slide">
+            <img src="images/eagle%20eyes.jpg" alt="Bird of prey photography">
+          </div>
+          <div class="slide">
+            <img src="images/3384%20kingfishers.jpg" alt="Kingfisher photography">
+          </div>
+          <div class="slide">
+            <img src="images/beach%20storm%20coming.jpg" alt="Beach storm photography">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const siteSettings = window.ACS_PHOTOGRAPHY_SETTINGS || {};
+    const baseUrl = siteSettings.BASE_URL || "https://acsphotography.co.uk";
+
+    document.querySelectorAll("[data-base-url-link]").forEach((link) => {
+      link.href = baseUrl;
+    });
+  </script>
+</body>
+</html>
