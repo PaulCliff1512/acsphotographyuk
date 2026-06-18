@@ -172,14 +172,14 @@ function topicImages(string $slug, array $sliderImages, array $featuredImages, a
       min-height: calc(100vh - 92px);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
-      gap: clamp(32px, 5vw, 76px);
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.95fr);
+      gap: clamp(28px, 4vw, 58px);
       align-items: center;
       padding: 16px 0 58px;
     }
 
     .hero-copy {
-      max-width: 620px;
+      max-width: 700px;
     }
 
     .kicker {
@@ -194,8 +194,8 @@ function topicImages(string $slug, array $sliderImages, array $featuredImages, a
     .hero h1 {
       margin: 0 0 26px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(3.8rem, 8vw, 7.4rem);
-      line-height: 0.9;
+      font-size: clamp(3.3rem, 6.4vw, 6rem);
+      line-height: 0.96;
       font-weight: 500;
       letter-spacing: 0;
     }
