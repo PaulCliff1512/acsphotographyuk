@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ACS Photography UK | Landing 1</title>
+  <title>ACS Photography UK | Landing 7</title>
   <style>
     :root {
-      --paper: #f8f4ec;
-      --ink: #20272a;
-      --muted: #62696d;
-      --accent: #6f4825;
-      --line: rgba(32, 39, 42, 0.14);
+      --dark: #111312;
+      --ink: #f6f0e5;
+      --soft: rgba(246, 240, 229, 0.72);
+      --amber: #c99a64;
+      --line: rgba(246, 240, 229, 0.16);
+      --glass: rgba(246, 240, 229, 0.08);
       --radius: 8px;
-      --shadow: 0 26px 70px rgba(32, 39, 42, 0.16);
       --content: 1180px;
     }
 
@@ -25,7 +25,7 @@
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--ink);
-      background: var(--paper);
+      background: var(--dark);
     }
 
     img {
@@ -35,49 +35,75 @@
       object-fit: cover;
     }
 
-    .page {
+    .darkroom {
+      position: relative;
       min-height: 100vh;
+      overflow: hidden;
+      isolation: isolate;
       padding: 28px;
       background:
-        linear-gradient(90deg, rgba(32, 39, 42, 0.055) 1px, transparent 1px) 0 0 / 90px 90px,
-        linear-gradient(135deg, #fbf8f1 0%, #eee6d9 100%);
+        radial-gradient(circle at 20% 20%, rgba(201, 154, 100, 0.22), transparent 34%),
+        radial-gradient(circle at 82% 26%, rgba(107, 139, 138, 0.22), transparent 32%),
+        linear-gradient(135deg, #151716 0%, #0e1110 100%);
+    }
+
+    .darkroom::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.28;
+      background-image:
+        linear-gradient(rgba(246, 240, 229, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(246, 240, 229, 0.05) 1px, transparent 1px);
+      background-size: 70px 70px;
+      mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
     }
 
     .header,
-    .hero {
+    .scene {
       width: min(100%, var(--content));
       margin: 0 auto;
     }
 
     .header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 34px;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 28px;
     }
 
     .logo {
       color: var(--ink);
-      font-size: 1.08rem;
+      font-size: 1.06rem;
       font-weight: 800;
       text-decoration: none;
     }
 
-    .hero {
-      min-height: calc(100vh - 100px);
+    .note {
+      color: var(--soft);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .scene {
+      min-height: calc(100vh - 94px);
       display: grid;
-      grid-template-columns: minmax(0, 0.86fr) minmax(360px, 1.14fr);
+      grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1.18fr);
       gap: clamp(34px, 5vw, 76px);
       align-items: center;
     }
 
     .copy {
-      max-width: 620px;
+      max-width: 580px;
     }
 
     .kicker {
       margin: 0 0 18px;
-      color: var(--accent);
+      color: var(--amber);
       font-size: 0.8rem;
       font-weight: 900;
       letter-spacing: 0.16em;
@@ -85,19 +111,19 @@
     }
 
     h1 {
-      margin: 0 0 26px;
+      margin: 0 0 24px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(3.8rem, 8vw, 7.2rem);
+      font-size: clamp(3.5rem, 7.8vw, 7.5rem);
       line-height: 0.9;
       font-weight: 500;
       letter-spacing: 0;
     }
 
     p {
-      margin: 0 0 24px;
-      color: var(--muted);
-      font-size: clamp(1.08rem, 1.5vw, 1.3rem);
-      line-height: 1.65;
+      margin: 0 0 28px;
+      color: var(--soft);
+      font-size: clamp(1.08rem, 1.55vw, 1.28rem);
+      line-height: 1.68;
     }
 
     .button {
@@ -106,77 +132,157 @@
       justify-content: center;
       min-height: 52px;
       padding: 0 26px;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--amber);
       border-radius: var(--radius);
-      color: #ffffff;
-      background: var(--accent);
-      font-weight: 800;
+      color: #15120f;
+      background: var(--amber);
+      font-weight: 900;
       text-decoration: none;
       transition: background 180ms ease, color 180ms ease, transform 180ms ease;
     }
 
     .button:hover,
     .button:focus {
-      color: var(--accent);
+      color: var(--amber);
       background: transparent;
       transform: translateY(-2px);
     }
 
-    .image-wall {
-      display: grid;
-      grid-template-columns: 0.82fr 1fr;
-      gap: clamp(14px, 2vw, 22px);
-      align-items: center;
+    .contact-sheet {
+      position: relative;
+      min-height: 640px;
     }
 
-    .frame {
+    .negative {
+      position: absolute;
+      overflow: hidden;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(246, 240, 229, 0.1);
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(8px);
+    }
+
+    .negative::before,
+    .negative::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      height: 12px;
+      z-index: 4;
+      background:
+        repeating-linear-gradient(90deg, rgba(246, 240, 229, 0.82) 0 10px, transparent 10px 24px);
+      opacity: 0.5;
+    }
+
+    .negative::before {
+      top: 12px;
+    }
+
+    .negative::after {
+      bottom: 12px;
+    }
+
+    .negative-inner {
       position: relative;
       overflow: hidden;
-      border-radius: var(--radius);
-      background: #ffffff;
-      box-shadow: var(--shadow);
+      width: 100%;
+      height: 100%;
+      border-radius: calc(var(--radius) - 2px);
     }
 
-    .frame--tall {
-      min-height: 520px;
-      aspect-ratio: 4 / 5;
+    .negative--main {
+      inset: 5% 18% 7% 8%;
+      z-index: 3;
+      transform: rotate(-2deg);
     }
 
-    .frame--wide {
-      min-height: 340px;
-      aspect-ratio: 5 / 4;
-      margin-top: 78px;
+    .negative--right {
+      top: 0;
+      right: 0;
+      z-index: 2;
+      width: 34%;
+      height: 44%;
+      transform: rotate(4deg);
+    }
+
+    .negative--left {
+      left: 0;
+      bottom: 4%;
+      z-index: 1;
+      width: 30%;
+      height: 32%;
+      transform: rotate(5deg);
+    }
+
+    .negative--bottom {
+      right: 7%;
+      bottom: 0;
+      z-index: 4;
+      width: 36%;
+      height: 34%;
+      transform: rotate(-4deg);
     }
 
     .slide {
       position: absolute;
       inset: 0;
       opacity: 0;
-      animation: fadeSlide 15s infinite;
+      animation: darkroomFade 18s infinite;
     }
 
     .slide:nth-child(2) {
-      animation-delay: 5s;
+      animation-delay: 6s;
     }
 
     .slide:nth-child(3) {
-      animation-delay: 10s;
+      animation-delay: 12s;
     }
 
-    @keyframes fadeSlide {
+    .caption {
+      position: absolute;
+      left: 34%;
+      bottom: 9%;
+      z-index: 5;
+      max-width: 340px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(17, 19, 18, 0.72);
+      backdrop-filter: blur(14px);
+    }
+
+    .caption strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+    }
+
+    .caption span {
+      color: var(--soft);
+      line-height: 1.5;
+    }
+
+    @keyframes darkroomFade {
       0% {
         opacity: 0;
-        transform: scale(1.08);
+        filter: saturate(0.5) contrast(1.1);
+        transform: scale(1.07);
       }
 
       8%,
-      30% {
+      31% {
         opacity: 1;
       }
 
-      38%,
+      41%,
       100% {
         opacity: 0;
+        filter: saturate(1) contrast(1);
         transform: scale(1);
       }
     }
@@ -195,39 +301,65 @@
       }
     }
 
-    @media (max-width: 900px) {
-      .page {
-        padding: 22px;
-      }
-
-      .hero {
-        min-height: auto;
+    @media (max-width: 940px) {
+      .scene {
         grid-template-columns: 1fr;
       }
 
-      .image-wall {
-        max-width: 720px;
+      .copy {
+        max-width: 760px;
+      }
+
+      .contact-sheet {
+        min-height: 560px;
       }
     }
 
-    @media (max-width: 620px) {
-      .page {
+    @media (max-width: 640px) {
+      .darkroom {
         padding: 18px;
+      }
+
+      .header {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       h1 {
         font-size: clamp(3rem, 17vw, 4.8rem);
       }
 
-      .image-wall {
-        grid-template-columns: 1fr;
+      .contact-sheet {
+        min-height: auto;
+        display: grid;
+        gap: 14px;
       }
 
-      .frame--tall,
-      .frame--wide {
-        min-height: 280px;
+      .negative,
+      .caption {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: auto;
+        transform: none;
+      }
+
+      .negative {
         aspect-ratio: 16 / 10;
-        margin-top: 0;
+      }
+
+      .negative--right,
+      .negative--left,
+      .negative--bottom {
+        display: none;
+      }
+
+      .negative--main {
+        min-height: 320px;
+      }
+
+      .caption {
+        max-width: none;
       }
 
       .button {
@@ -237,30 +369,44 @@
   </style>
 </head>
 <body>
-  <main class="page">
+  <main class="darkroom">
     <header class="header">
-      <a class="logo" href="/home.php">acsphotographyuk.co.uk</a>
+      <a class="logo" href="home.php">acsphotographyuk.co.uk</a>
+      <span class="note">Darkroom studies</span>
     </header>
 
-    <section class="hero" aria-label="ACS Photography UK landing page">
+    <section class="scene" aria-label="ACS Photography UK landing page">
       <div class="copy">
-        <p class="kicker">ACS Photography UK</p>
-        <h1>The Art of Capturing Moments</h1>
-        <p>Photography shaped by light, patience, and the details that make a moment worth keeping.</p>
-        <p>Explore landscapes, creatures in nature, and quiet stories seen through the lens.</p>
-        <a class="button" href="/home.php">Enter Site</a>
+        <p class="kicker">Light made visible</p>
+        <h1>Before the image becomes memory.</h1>
+        <p>There is a moment when the world turns photographic: a bird crossing light, weather changing the water, a path becoming a story. This is where the collection begins.</p>
+        <a class="button" href="home.php">Enter Site</a>
       </div>
 
-      <div class="image-wall" aria-label="Photography preview">
-        <div class="frame frame--tall">
-          <div class="slide"><img src="images/Peak%20District/Z72_5902-Enhanced-NR.jpg" alt="Peak District landscape photography"></div>
-          <div class="slide"><img src="images/The%20Forest%20Path.JPG" alt="Forest path photography"></div>
-          <div class="slide"><img src="images/beach%20storm%20coming.jpg" alt="Beach storm photography"></div>
+      <div class="contact-sheet" aria-label="Photography contact sheet">
+        <div class="negative negative--main">
+          <div class="negative-inner">
+            <div class="slide"><img src="images/Peak%20District/Z72_6818-Enhanced-NR-Edit.jpg" alt="Peak District landscape photography"></div>
+            <div class="slide"><img src="images/Kingfishers%20Shropshire/Z72_3195-Enhanced-NR-Edit.jpg" alt="Kingfisher photography"></div>
+            <div class="slide"><img src="images/Heswall%20Boat%20Graveyard/p9010096-.jpg" alt="Boat graveyard photography"></div>
+          </div>
         </div>
-        <div class="frame frame--wide">
-          <div class="slide"><img src="images/eagle%20eyes.jpg" alt="Bird of prey photography"></div>
-          <div class="slide"><img src="images/3384%20kingfishers.jpg" alt="Kingfisher photography"></div>
-          <div class="slide"><img src="images/busy%20bee.jpg" alt="Bee nature photography"></div>
+
+        <div class="negative negative--right">
+          <div class="negative-inner"><img src="images/eagle%20eyes.jpg" alt="Bird of prey photography"></div>
+        </div>
+
+        <div class="negative negative--left">
+          <div class="negative-inner"><img src="images/The%20Forest%20Path.JPG" alt="Forest path photography"></div>
+        </div>
+
+        <div class="negative negative--bottom">
+          <div class="negative-inner"><img src="images/busy%20bee.jpg" alt="Bee photography"></div>
+        </div>
+
+        <div class="caption">
+          <strong>Contact sheets of feeling.</strong>
+          <span>Landscapes, wildlife, and natural detail, held between shadow and light.</span>
         </div>
       </div>
     </section>

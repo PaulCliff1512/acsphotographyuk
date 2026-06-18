@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       --accent-dark: #6f4825;
       --line: rgba(31, 37, 40, 0.14);
       --radius: 8px;
-      --content-width: 960px;
+      --content-width: 1180px;
     }
 
     * {
@@ -145,10 +145,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       font: inherit;
     }
 
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .preview-panel h2 {
+      margin: 0 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.55rem;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
     .preview {
       overflow: hidden;
       height: 360px;
-      margin-bottom: 18px;
       border: 1px solid #000000;
       border-radius: var(--radius);
       background: var(--surface);
@@ -177,6 +191,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     @media (max-width: 620px) {
+      .preview-grid {
+        grid-template-columns: 1fr;
+      }
+
       .preview {
         height: 280px;
       }
@@ -214,8 +232,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endforeach; ?>
       </select>
 
-      <div class="preview" aria-label="Landing page preview">
-        <iframe src="../landing1.html" title="Landing page preview" data-landing-preview></iframe>
+      <div class="preview-grid">
+        <section class="preview-panel">
+          <h2>Current index.html</h2>
+          <div class="preview" aria-label="Current landing page preview">
+            <iframe src="../index.html" title="Current active landing page"></iframe>
+          </div>
+        </section>
+
+        <section class="preview-panel">
+          <h2>Chosen replacement</h2>
+          <div class="preview" aria-label="Chosen landing page preview">
+            <iframe src="../landing1.html" title="Chosen landing page preview" data-landing-preview></iframe>
+          </div>
+        </section>
       </div>
 
       <button type="submit">Apply Landing Page</button>
