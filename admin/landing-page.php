@@ -4,6 +4,7 @@ requireAdminLogin();
 
 $message = '';
 $error = '';
+$previewVersion = time();
 $landingPages = [
     'landing1.html' => 'Landing 1',
     'landing2.html' => 'Landing 2',
@@ -209,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <main class="page">
     <div class="top-links">
       <a href="index.php">Admin home</a>
-      <a href="../index.html">View landing page</a>
+      <a href="../index.html?v=<?php echo $previewVersion; ?>">View landing page</a>
       <a href="../home.php">Back to site</a>
     </div>
 
@@ -236,12 +237,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <section class="preview-panel">
           <h2>Current index.html</h2>
           <div class="preview" aria-label="Current landing page preview">
-            <iframe src="../index.html" title="Current active landing page"></iframe>
+            <iframe src="../index.html?v=<?php echo $previewVersion; ?>" title="Current active landing page"></iframe>
           </div>
         </section>
 
         <section class="preview-panel">
-          <h2>Chosen replacement</h2>
+          <h2>Choose a replacement</h2>
           <div class="preview" aria-label="Chosen landing page preview">
             <iframe src="landing-preview.php?file=landing1.html" title="Chosen landing page preview" data-landing-preview></iframe>
           </div>

@@ -47,10 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($altText === '') {
         $error = 'Please add image alt text.';
     } else {
-        if ($topicId !== (int) $image['topic_id']) {
+        $imagePath = $image['image_path'];
+
+        if ($topicId !== (int) $image['topic_id'] && strpos($image['image_path'], 'uploads/' . $image['topic_slug'] . '/') === 0) {
             $oldPath = __DIR__ . '/../uploads/' . $image['topic_slug'] . '/' . $image['filename'];
             $newDirectory = __DIR__ . '/../uploads/' . $selectedTopic['slug'];
             $newPath = $newDirectory . '/' . $image['filename'];
+            $imagePath = 'uploads/' . $selectedTopic['slug'] . '/' . $image['filename'];
 
             if (!is_dir($newDirectory)) {
                 mkdir($newDirectory, 0755, true);
@@ -69,7 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  caption = :caption,
                  display_order = :display_order,
                  is_featured = :is_featured,
-                 is_active = :is_active
+                 is_active = :is_active,
+                 image_path = :image_path
              WHERE id = :id'
         );
 
@@ -81,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'display_order' => $displayOrder,
             'is_featured' => $isFeatured,
             'is_active' => $isActive,
+            'image_path' => $imagePath,
             'id' => $imageId,
         ]);
 
@@ -271,7 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>Edit Image</h1>
 
     <div class="preview">
-      <img src="../uploads/<?php echo htmlspecialchars($image['topic_slug']); ?>/<?php echo htmlspecialchars($image['filename']); ?>" alt="<?php echo htmlspecialchars($image['alt_text']); ?>">
+      <img src="../<?php echo htmlspecialchars($image['image_path']); ?>" alt="<?php echo htmlspecialchars($image['alt_text']); ?>">
     </div>
 
     <?php if ($message !== ''): ?>

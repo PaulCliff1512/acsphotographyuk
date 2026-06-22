@@ -121,26 +121,29 @@ requireAdminLogin();
       <a href="index.php">Admin home</a>
       <a href="upload.php">Upload image</a>
       <a href="images.php">Manage images</a>
-      <a href="../home.php">Back to site</a>
+      <a href="logout.php">Logout</a>
     </div>
 
     <article class="manual">
       <h1>Admin User Manual</h1>
 
-      <h2>How To Open Admin</h2>
-      <p>Go to the admin login page:</p>
+      <h2>Opening Admin</h2>
+      <p>Go directly to the admin login page:</p>
       <pre>https://acsphotographyuk.co.uk/admin/login.php</pre>
       <p>Enter the admin password, then click Enter Admin.</p>
 
-      <h2>Admin Password</h2>
-      <p>The admin password is private and should only be given to people allowed to manage the site.</p>
-      <p>If the password needs changing, ask the site owner or developer to update the admin password file.</p>
+      <h2>Password</h2>
+      <p>The admin password should only be shared with people allowed to manage the website.</p>
+      <p>To change the password, update the password hash inside:</p>
+      <pre>config/admin.php</pre>
+      <p>After changing the password, logout and login again to test it.</p>
 
       <h2>Admin Home</h2>
-      <p>After logging in, the admin home page shows the main choices:</p>
+      <p>After logging in, Admin Home shows the main tools:</p>
       <pre>Upload Image
 Manage Images
 Homepage Sliders
+Landing Page
 Image Folder Files
 Manual</pre>
 
@@ -148,25 +151,31 @@ Manual</pre>
       <p>The admin home page shows how much image storage has been used.</p>
       <p>The storage limit is set to 1 GB.</p>
       <p>If storage reaches 75%, a warning appears. If storage reaches 90%, a red warning appears. If storage goes over the limit, the percentage continues above 100%.</p>
-      <p>If the storage is over the limit for any length of time then the hosting company have the rights to remove some of the files </p>
-	  <p>The user must keep image sizes under control.</p>
+      <p>When the warning appears, delete unused images before adding more. Keep image sizes sensible so the hosting account stays healthy.</p>
 
       <h2>Upload Image</h2>
+      <p>Use Upload Image when adding a picture to Landscapes or Creatures in Nature.</p>
+      <p>There are two ways to add an image:</p>
+      <pre>Upload from computer
+Choose from server</pre>
+      <p>Upload from computer adds a new file from your device. Choose from server uses an image that is already inside the website image folders.</p>
       <ol>
         <li>Click Upload Image.</li>
         <li>Choose the correct topic: Landscapes or Creatures in Nature.</li>
-        <li>Choose the image file. A preview of the selected image will appear before upload.</li>
+        <li>Choose Upload from computer or Choose from server.</li>
+        <li>Select the image. A preview will appear before saving.</li>
         <li>Add a clear title.</li>
         <li>Add alt text describing the image.</li>
         <li>Add a caption if required.</li>
         <li>Set the display order. Lower numbers appear earlier.</li>
-        <li>Tick Use as featured image if the image should appear in the homepage moving panels.</li>
+        <li>Tick Use as featured image if the image should be available as a featured image.</li>
         <li>Click Upload Image.</li>
       </ol>
+      <p>After saving, the image will be available on the public topic page once it is active.</p>
 
       <h2>Manage Images</h2>
-      <p>Use Manage Images to update images that have already been uploaded through admin.</p>
-      <p>Click Edit beside an image to change:</p>
+      <p>Use Manage Images to update pictures that are already connected to a topic.</p>
+      <p>Click Edit beside an image to change its details:</p>
       <pre>Topic
 Title
 Alt text
@@ -174,10 +183,11 @@ Caption
 Display order
 Featured image
 Active status</pre>
+      <p>Changing the topic moves the image to the other public gallery. Display order controls the order on the gallery page.</p>
       <p>If Active status is unticked, the image will not show in the public gallery.</p>
 
       <h2>Homepage Sliders</h2>
-      <p>Use Homepage Sliders to choose the images shown in the moving panels on the main site homepage.</p>
+      <p>Use Homepage Sliders to choose the images shown in the moving panels on the site landing page.</p>
       <p>Each topic has three slots:</p>
       <pre>Landscapes Slot 1
 Landscapes Slot 2
@@ -186,10 +196,18 @@ Creatures in Nature Slot 1
 Creatures in Nature Slot 2
 Creatures in Nature Slot 3</pre>
       <p>Choose an image for each slot, then click Save Homepage Sliders.</p>
-      <p>The choices can use images from the site image folders.</p>
+      <p>The choices can use images from the website image folders.</p>
+
+      <h2>Landing Page</h2>
+      <p>Use Landing Page to choose which saved landing design is active on the front of the site.</p>
+      <p>The page shows two previews:</p>
+<pre>Current index.html
+Choose a replacement</pre>
+      <p>Select a landing page design from the dropdown, check the preview, then click Apply Landing Page.</p>
+      <p>Applying a design copies it to the public front page. The saved designs remain unchanged inside the admin area.</p>
 
       <h2>Image Folder File Manager</h2>
-      <p>Use Image Folder Files to review images stored in the original images folder.</p>
+      <p>Use Image Folder Files to review images stored in the website image folders.</p>
       <p>This page includes images inside subfolders and shows:</p>
       <pre>Image preview
 folder/filename
@@ -198,10 +216,11 @@ Last changed date
 Delete button</pre>
       <p>The page shows 24 images per page.</p>
       <p>When Delete is clicked, a confirmation screen appears with the image preview. The file is only deleted after clicking Delete Image on the confirmation screen.</p>
-      <p>The delete function is a permanent DELETE! Only delete images that are no longer required.</p>
+      <p>Deleting a file is permanent. Only delete images that are no longer required anywhere on the site.</p>
 
       <h2>Logout</h2>
       <p>Click Logout from the admin home page when finished.</p>
+      <p>Logout clears the admin session and returns to the public site. Opening admin again will require the password.</p>
     </article>
   </main>
 </body>

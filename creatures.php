@@ -24,7 +24,7 @@ $currentPage = min($currentPage, $totalPages);
 $offset = ($currentPage - 1) * $imagesPerPage;
 
 $imagesStatement = $pdo->prepare(
-    'SELECT filename, title, alt_text, caption
+    'SELECT filename, image_path, title, alt_text, caption
      FROM images
      WHERE topic_id = :topic_id AND is_active = 1
      ORDER BY display_order, created_at DESC'
@@ -297,7 +297,7 @@ $images = $imagesStatement->fetchAll();
       <?php foreach ($images as $image): ?>
         <article class="photo">
           <div class="photo-image">
-            <img src="uploads/creatures/<?php echo htmlspecialchars($image['filename']); ?>" alt="<?php echo htmlspecialchars($image['alt_text']); ?>" data-fullscreen-image>
+            <img src="<?php echo htmlspecialchars($image['image_path']); ?>" alt="<?php echo htmlspecialchars($image['alt_text']); ?>" data-fullscreen-image>
           </div>
           <div class="photo-content">
             <h2><?php echo htmlspecialchars($image['title']); ?></h2>

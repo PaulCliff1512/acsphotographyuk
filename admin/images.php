@@ -4,7 +4,7 @@ requireAdminLogin();
 require __DIR__ . '/../includes/db.php';
 
 $imagesStatement = $pdo->query(
-    'SELECT images.id, images.filename, images.title, images.alt_text, images.display_order,
+    'SELECT images.id, images.filename, images.image_path, images.title, images.alt_text, images.display_order,
             images.is_featured, images.is_active, topics.name AS topic_name, topics.slug AS topic_slug
      FROM images
      INNER JOIN topics ON images.topic_id = topics.id
@@ -184,7 +184,7 @@ $images = $imagesStatement->fetchAll();
       <?php foreach ($images as $image): ?>
         <article class="image-row">
           <div class="thumb">
-            <img src="../uploads/<?php echo htmlspecialchars($image['topic_slug']); ?>/<?php echo htmlspecialchars($image['filename']); ?>" alt="<?php echo htmlspecialchars($image['alt_text']); ?>">
+            <img src="../<?php echo htmlspecialchars($image['image_path']); ?>" alt="<?php echo htmlspecialchars($image['alt_text']); ?>">
           </div>
           <div class="image-info">
             <h2><?php echo htmlspecialchars($image['title']); ?></h2>

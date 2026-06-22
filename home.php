@@ -12,7 +12,7 @@ $topics = $topicsStatement->fetchAll();
 $featuredImages = [];
 foreach ($topics as $topic) {
     $imagesStatement = $pdo->prepare(
-        'SELECT filename, title, alt_text
+        'SELECT filename, image_path, title, alt_text
          FROM images
          WHERE topic_id = :topic_id AND is_featured = 1 AND is_active = 1
          ORDER BY display_order, created_at DESC
@@ -61,6 +61,10 @@ function imageSource(string $slug, array $image): string
 {
     if (isset($image['src'])) {
         return $image['src'];
+    }
+
+    if (isset($image['image_path']) && $image['image_path'] !== '') {
+        return $image['image_path'];
     }
 
     return 'uploads/' . $slug . '/' . rawurlencode($image['filename']);
